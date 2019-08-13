@@ -1,46 +1,44 @@
 import java.util.*;
-public class Lesson{
+public class Hw{
 
 
+
+        public static int dynamic(int[] data, int pounds){
+                int[][] cell = new int[data.length][pounds];
+                for(int i = 0; i < cell.length; i ++){
+                        for(int j = 0; j < cell[0].length; j ++){
+                                try{
+                                        cell[i][j] = Math.max(cell[i-1][j], cell[i - 1][j - data[i]] + values.get(data[i]));
+                                }
+                                catch(ArrayIndexOutOfBoundsException e){
+                                        if(j + 1 >= data[i]){
+                                                cell[i][j] = values.get(data[i]);
+                                        }
+                                        else{
+                                                cell[i][j] = cell[i-1][j];
+                                        }
+                                }
+                        }
+                }
+                int max = 0;
+                for(int i = 0; i < cell.length; i ++){
+                        if(cell[i][pounds - 1] > max){
+                                max = cell[i][pounds - 1];
+                        }
+                }
+                return max;
+        }
+
+        static HashMap<Integer, Integer> values = new HashMap<>();
         public static void main(String[] args) {
-                Node start = new Node();
-                Node A  = new Node();
-                Node B = new Node();
-                Node finish = new Node();
-                start.children.add(A);
-                start.lengths.add(6);
-                start.children.add(B);
-                start.lengths.add(2);
-                A.children.add(finish);
-                A.lengths.add(1);
-                B.children.add(A);
-                B.lengths.add(3);
-                B.children.add(finish);
-                B.lengths.add(5);
+                values.put(1, 1500);
+                values.put(3, 2000);
+                values.put(4, 3000);
 
-                n = checkDist(start, finish);
+                int[] weights = {1, 4, 3};
+
+
+                int n = dynamic(weights, 4);
                 System.out.println(n);
         }
-
-        public static int checkDist(Node start, Node finish){
-                HashMap<Node, Integer> costs = new HashMap<>();
-                HashMap<Node, Node> parents = new HashMap<>();
-                for(int i = 0; i < start.children.size(); i ++){
-                        costs.put(start.children.get(i), start.lengths.get(i));
-                        parents.put(start.children.get(i), start);
-                }
-                while(true){
-                        for()
-                }
-        }
-}
-
-class Node{
-        ArrayList<Node> children;
-        ArrayList<Integer> lengths;
-        public Node(){
-                children = new ArrayList<>();
-                lengths= new ArrayList<>();
-        }
-
 }
